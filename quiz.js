@@ -1,29 +1,21 @@
-function checkAnswer(onSuccess, onError) {
-    correctAnswer = "4";
-    userAnswer = document.querySelector('input[name="quiz"]:checked').value;
+// Function Declaration
+function checkAnswer() {
+    // Identify the Correct Answer
+    const correctAnswer = "4";
     
+    // Retrieve the User's Answer
+    const userAnswer = document.querySelector('input[name="quiz"]:checked').value;
+    
+    // Compare the User's Answer with the Correct Answer
     if (userAnswer === correctAnswer) {
-        feedback = document.getElementById("feedback");
-        feedback.textContent = "Correct! Well done!";
-        onSuccess(); // Success callback
+        // If correct, display success message
+        document.getElementById("feedback").textContent = "Correct! Well done.";
     } else {
-        feedback.textContent = "Incorrect. Try again.";
-        onError(); // Error callback
+        // If incorrect, display error message
+        document.getElementById("feedback").textContent = "That's incorrect. Try again!";
     }
 }
 
-submitAnswer = document.getElementById("submit-answer");
-submitAnswer.addEventListener("click", () => {
-    checkAnswer(
-        () => {
-            // Success callback
-            console.log("Correct answer - additional actions can go here");
-            // Example: enable next button, play success sound, etc.
-        },
-        () => {
-            // Error callback  
-            console.log("Wrong answer - additional actions can go here");
-            // Example: shake animation, play error sound, etc.
-        }
-    );
-});
+// Add an Event Listener to the Submit Button
+const submitAnswer = document.getElementById("submit-answer");
+submitAnswer.addEventListener("click", checkAnswer);
